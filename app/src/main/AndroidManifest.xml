@@ -13,6 +13,18 @@
         android:theme="@style/Theme.XpenseTracker"
         tools:targetApi="31">
         <activity
+            android:name=".signup"
+            android:exported="false" />
+        <activity
+            android:name=".expenseList"
+            android:exported="false" />
+        <activity
+            android:name=".expenseEntry"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

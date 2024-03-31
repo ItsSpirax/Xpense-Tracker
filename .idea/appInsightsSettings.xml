@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.adith.xpense.tracker" />
+                  <option name="mobileSdkAppId" value="1:303371029517:android:0ae7c6ffe23d757f609944" />
+                  <option name="projectId" value="spirax-xpense-tracker" />
+                  <option name="projectNumber" value="303371029517" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

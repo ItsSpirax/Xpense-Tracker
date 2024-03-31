@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.adith.mad.project"
+    namespace = "com.adith.xpense.tracker"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.adith.mad.project"
+        applicationId = "com.adith.xpense.tracker"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
@@ -40,4 +41,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
 }

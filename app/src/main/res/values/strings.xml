@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Xpense Tracker</string>
+    <string name="app_name">XpenseTrack</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="logout">Logout</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="name">Name:</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_password">Enter Password</string>
 </resources>
