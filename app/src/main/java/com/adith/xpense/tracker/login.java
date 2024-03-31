@@ -33,7 +33,7 @@ public class login extends AppCompatActivity {
     }
 
     public void Login(View view) {
-        email = findViewById(R.id.name);
+        email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         String t1 = email.getText().toString();
         String t2 = password.getText().toString();

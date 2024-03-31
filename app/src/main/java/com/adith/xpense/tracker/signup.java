@@ -64,12 +64,12 @@ public class signup extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            if(Objects.equals(Objects.requireNonNull(task.getException()).getMessage(), "The email address is already in use by another account.")) {
+                            if (Objects.equals(Objects.requireNonNull(task.getException()).getMessage(), "The email address is already in use by another account.")) {
                                 email.setError("Email already in use!");
                                 email.setText("");
                                 password.setText("");
                             } else {
-                                Toast.makeText(getApplicationContext(), "Password should be atleast 6 characters!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Password should be at least 6 characters!", Toast.LENGTH_SHORT).show();
                                 password.setText("");
                             }
                         }

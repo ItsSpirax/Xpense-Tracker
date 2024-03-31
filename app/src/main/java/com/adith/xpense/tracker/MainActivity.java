@@ -19,14 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 
 public class MainActivity extends AppCompatActivity {
-    TextView welcome;
+    TextView name;
     private FirebaseAuth mAuth;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FireBase.init();
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -40,37 +39,35 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, login.class);
             startActivity(intent);
+        } else {
+            name = findViewById(R.id.name);
+            FireBase.getUser(mAuth.getCurrentUser().getUid(), task -> {
+                if (task.isSuccessful()) {
+                    User user = ((DataSnapshot) task.getResult()).getValue(User.class);
+                    assert user != null;
+                    name.setText(user.name);
+                }
+            });
         }
-
-        welcome = findViewById(R.id.welcome);
-        FireBase.getUser(mAuth.getCurrentUser().getUid(), task -> {
-            if (task.isSuccessful()) {
-                User user = ((DataSnapshot) task.getResult()).getValue(User.class);
-                assert user != null;
-                welcome.setText("Welcome " + user.name + "!");
-            }
-        });
     }
 
-    public void expenseEntry(View view) {
-        if (mAuth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, login.class);
-            startActivity(intent);
-            return;
-        }
+    public void viewExpenses(View view) {
+        Intent intent = new Intent(this, expenseList.class);
+        startActivity(intent);
+    }
+
+    public void addExpense(View view) {
         Intent intent = new Intent(this, expenseEntry.class);
         startActivity(intent);
     }
 
-    public void expenseList(View view) {
-        if (mAuth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, login.class);
-            startActivity(intent);
-            return;
-        }
-        Intent intent = new Intent(this, expenseList.class);
+    public void updateExpense(View view) {
+        Intent intent = new Intent(this, expenseUpdate.class);
+        startActivity(intent);
+    }
+
+    public void deleteExpense(View view) {
+        Intent intent = new Intent(this, expenseDelete.class);
         startActivity(intent);
     }
 

@@ -1,15 +1,24 @@
 <resources>
     <string name="app_name">XpenseTrack</string>
-    <string name="welcome_back">Welcome Back!</string>
-    <string name="logout">Logout</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="enter_email">Enter Email</string>
-    <string name="already_have_an_account_login">Already have an account? Login</string>
-    <string name="email">Email:</string>
-    <string name="password">Password:</string>
-    <string name="login">Login</string>
-    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
-    <string name="name">Name:</string>
-    <string name="enter_name">Enter Name</string>
-    <string name="enter_password">Enter Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="don_t_have_account">Don\'t have account?</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="login_capital">Login</string>
+    <string name="signUp_capital">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_here">Login Here</string>
+    <string name="register">Register</string>
+    <string name="log_out">Log Out</string>
+    <string name="app_logo">App Logo</string>
+    <string name="delete_expense">Delete Expense</string>
+    <string name="update_expense">Update Expense</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="view_expenses">View Expenses</string>
+    <string name="expenditure">Expenditure</string>
+    <string name="total">Total</string>
+    <string name="monthly">Monthly</string>
+    <string name="average">Average</string>
 </resources>
