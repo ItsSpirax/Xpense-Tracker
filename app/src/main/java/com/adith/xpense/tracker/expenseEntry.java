@@ -1,6 +1,11 @@
 package com.adith.xpense.tracker;
+import com.adith.xpense.tracker.models.*;
+import com.adith.xpense.tracker.utils.FireBase;
+import com.google.firebase.database.DataSnapshot;
 
 import android.os.Bundle;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +15,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class expenseEntry extends AppCompatActivity {
 
+    Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FireBase.init();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_expense_entry);
@@ -20,5 +28,9 @@ public class expenseEntry extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Get bundle with user id
+        Bundle bundle = getIntent().getExtras();
+        String userId = bundle.getString("userId");
+        spinner = findViewById(R.id.spinner);
     }
 }

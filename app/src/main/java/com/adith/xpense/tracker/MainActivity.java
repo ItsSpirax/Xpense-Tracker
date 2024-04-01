@@ -1,6 +1,5 @@
 package com.adith.xpense.tracker;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TextView name;
     private FirebaseAuth mAuth;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FireBase.init();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -35,39 +32,82 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() == null) {
-            Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, login.class);
-            startActivity(intent);
-        } else {
+        if (mAuth.getCurrentUser() != null) {
+            FireBase.init();
             name = findViewById(R.id.name);
             FireBase.getUser(mAuth.getCurrentUser().getUid(), task -> {
                 if (task.isSuccessful()) {
-                    User user = ((DataSnapshot) task.getResult()).getValue(User.class);
-                    assert user != null;
-                    name.setText(user.name);
+                    System.out.println(task.getResult().toString());
+                    DataSnapshot snapshot = (DataSnapshot) task.getResult();
+                    String user = snapshot.child("name").getValue(String.class);
+                    if (user != null) {
+                        name.setText(user);
+                        // Get Expenses and calculate total
+                        FireBase.getExpensse(mAuth.getCurrentUser().getUid(), task1 -> {
+                            if (task1.isSuccessful()) {
+                                DataSnapshot snapshot1 = (DataSnapshot) task1.getResult();
+                                int total = 0;
+                                int monthlyTotal = 0;
+                                int avg = 0;
+                                for (DataSnapshot child : snapshot1.getChildren()) {
+                                    total += child.child("amount").getValue(Integer.class);
+                                    // TODO : Monthly
+                                }
+                                avg = total / (int) snapshot1.getChildrenCount();
+                                TextView totalView = findViewById(R.id.total);
+                                TextView monthlyView = findViewById(R.id.monthly);
+                                TextView avgView = findViewById(R.id.average);
+                                String totalStr = "₹" + String.format("%,d", total);
+                                String monthlyStr = "₹" + String.format("%,d", monthlyTotal);
+                                String avgStr = "₹" +String.format("%,d", avg);
+                                totalView.setText(totalStr);
+                                monthlyView.setText(monthlyStr);
+                                avgView.setText(avgStr);
+                            }
+                        });
+                    } else {
+                        Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, login.class);
+                        startActivity(intent);
+                    }
                 }
             });
+        } else {
+            Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, login.class);
+            startActivity(intent);
         }
     }
 
     public void viewExpenses(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", mAuth.getCurrentUser().getUid());
         Intent intent = new Intent(this, expenseList.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     public void addExpense(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", mAuth.getCurrentUser().getUid());
         Intent intent = new Intent(this, expenseEntry.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     public void updateExpense(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", mAuth.getCurrentUser().getUid());
         Intent intent = new Intent(this, expenseUpdate.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     public void deleteExpense(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", mAuth.getCurrentUser().getUid());
         Intent intent = new Intent(this, expenseDelete.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

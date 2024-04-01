@@ -29,6 +29,18 @@ public class login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String email = bundle.getString("email");
+            if (email != null) {
+                EditText emailField = findViewById(R.id.email);
+                emailField.setText(email);
+            }
+        }
         mAuth = FirebaseAuth.getInstance();
     }
 

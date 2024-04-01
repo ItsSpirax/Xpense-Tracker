@@ -51,7 +51,7 @@ public class signup extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(t1, t2)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            FireBase.addUser(new User(Objects.requireNonNull(mAuth.getCurrentUser()).getUid(), name.getText().toString(), email.getText().toString()), task1 -> {
+                            FireBase.addUser(mAuth.getCurrentUser().getUid(), new User(name.getText().toString(), email.getText().toString()), task1 -> {
                                 if (task1.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Account Created!", Toast.LENGTH_SHORT).show();
                                     Bundle bundle = new Bundle();

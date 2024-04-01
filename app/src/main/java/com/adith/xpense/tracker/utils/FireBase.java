@@ -13,27 +13,28 @@ public class FireBase {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public static void addUser(User user, OnCompleteListener listener) {
-        mDatabase.child("users").child(user.id).setValue(user).addOnCompleteListener(listener);
+    public static void addUser(String userId, User user, OnCompleteListener listener) {
+        mDatabase.child("users").child(userId).setValue(user).addOnCompleteListener(listener);
     }
 
-    public static void getUser(String id, OnCompleteListener listener) {
-        mDatabase.child("users").child(id).get().addOnCompleteListener(listener);
+    public static void getUser(String userId, OnCompleteListener listener) {
+        mDatabase.child("users").child(userId).get().addOnCompleteListener(listener);
     }
 
-    public static void addExpense(Expense expense, OnCompleteListener listener) {
-        mDatabase.child("expenses").child(expense.id).setValue(expense).addOnCompleteListener(listener);
+    public static void addExpense(String userId, Expense expense, OnCompleteListener listener) {
+        mDatabase.child("users").child(userId).child("expenses").child(mDatabase.push().getKey()).setValue(expense).addOnCompleteListener(listener);
     }
 
-    public static void getExpense(String id, OnCompleteListener listener) {
-        mDatabase.child("expenses").child(id).get().addOnCompleteListener(listener);
+    public static void getExpensse(String userId, OnCompleteListener listener) {
+        // Get expenses from oldest to newest
+        mDatabase.child("users").child(userId).child("expenses").get().addOnCompleteListener(listener);
     }
 
-    public static void updateExpense(Expense expense, OnCompleteListener listener) {
-        mDatabase.child("expenses").child(expense.id).setValue(expense).addOnCompleteListener(listener);
+    public static void updateExpense(String userId, String expenseId, Expense expense, OnCompleteListener listener) {
+        mDatabase.child("users").child(userId).child("expenses").child(expenseId).setValue(expense).addOnCompleteListener(listener);
     }
 
-    public static void deleteExpense(Expense expense, OnCompleteListener listener) {
-        mDatabase.child("expenses").child(expense.id).removeValue().addOnCompleteListener(listener);
+    public static void deleteExpense(String userId, String expenseId, OnCompleteListener listener) {
+        mDatabase.child("users").child(userId).child("expenses").child(expenseId).removeValue().addOnCompleteListener(listener);
     }
 }

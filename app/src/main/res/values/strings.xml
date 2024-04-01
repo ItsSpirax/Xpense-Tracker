@@ -17,8 +17,17 @@
     <string name="update_expense">Update Expense</string>
     <string name="add_expense">Add Expense</string>
     <string name="view_expenses">View Expenses</string>
-    <string name="expenditure">Expenditure</string>
+    <string name="expenditure"><u>Expenditure</u></string>
     <string name="total">Total</string>
     <string name="monthly">Monthly</string>
     <string name="average">Average</string>
+    <string-array name="categories">
+        <item>Select</item>
+        <item>Bills</item>
+        <item>Clothes</item>
+        <item>Food</item>
+        <item>Groceries</item>
+        <item>Travel</item>
+        <item>Others</item>
+    </string-array>
 </resources>
