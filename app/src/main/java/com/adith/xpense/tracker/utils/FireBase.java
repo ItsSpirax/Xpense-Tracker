@@ -22,15 +22,13 @@ public class FireBase {
     }
 
     public static void addExpense(String userId, Expense expense, OnCompleteListener listener) {
-        mDatabase.child("users").child(userId).child("expenses").child(mDatabase.push().getKey()).setValue(expense).addOnCompleteListener(listener);
+        String uid = mDatabase.push().getKey();
+        expense.id = uid;
+        mDatabase.child("users").child(userId).child("expenses").child(uid).setValue(expense).addOnCompleteListener(listener);
     }
 
     public static void getExpenses(String userId, OnCompleteListener listener) {
         mDatabase.child("users").child(userId).child("expenses").get().addOnCompleteListener(listener);
-    }
-
-    public static void updateExpense(String userId, String expenseId, Expense expense, OnCompleteListener listener) {
-        mDatabase.child("users").child(userId).child("expenses").child(expenseId).setValue(expense).addOnCompleteListener(listener);
     }
 
     public static void deleteExpense(String userId, String expenseId, OnCompleteListener listener) {

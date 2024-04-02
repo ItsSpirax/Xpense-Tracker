@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, login.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -65,16 +68,18 @@ public class MainActivity extends AppCompatActivity {
                             int monthlyTotal = 0;
                             int avg = 0;
 
-                            for (DataSnapshot child : snapshot1.getChildren()) {
-                                total += child.child("amount").getValue(Integer.class);
+                            if (snapshot1.getChildrenCount() != 0) {
+                                for (DataSnapshot child : snapshot1.getChildren()) {
+                                    total += child.child("amount").getValue(Integer.class);
 
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.setTime(child.child("date").getValue(Date.class));
-                                if (calendar.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)) {
-                                    monthlyTotal += child.child("amount").getValue(Integer.class);
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.setTime(child.child("date").getValue(Date.class));
+                                    if (calendar.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)) {
+                                        monthlyTotal += child.child("amount").getValue(Integer.class);
+                                    }
                                 }
+                                avg = total / (int) snapshot1.getChildrenCount();
                             }
-                            avg = total / (int) snapshot1.getChildrenCount();
 
                             String totalStr = "₹" + String.format("%,d", total);
                             String monthlyStr = "₹" + String.format("%,d", monthlyTotal);
@@ -93,9 +98,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Please login to continue", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, login.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
+    }
+
+    public void viewOverview(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", mAuth.getCurrentUser().getUid());
+        Intent intent = new Intent(this, Overview.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public void viewExpenses(View view) {
@@ -119,5 +133,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, login.class);
         startActivity(intent);
+        finish();
     }
 }

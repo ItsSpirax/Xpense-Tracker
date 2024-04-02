@@ -61,6 +61,7 @@ public class signup extends AppCompatActivity {
                                     Intent i = new Intent(getApplicationContext(), login.class);
                                     i.putExtras(bundle);
                                     startActivity(i);
+                                    finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Firebase Error!", Toast.LENGTH_SHORT).show();
                                 }
@@ -70,9 +71,15 @@ public class signup extends AppCompatActivity {
                                 email.setError("Email already in use!");
                                 email.setText("");
                                 password.setText("");
-                            } else {
+                            } else if(Objects.equals(Objects.requireNonNull(task.getException()).getMessage(), "The email address is badly formatted.")) {
+                                email.setError("Invalid Email!");
+                                email.setText("");
+                                password.setText("");
+                            } else if(Objects.equals(Objects.requireNonNull(task.getException()).getMessage(), "The given password is invalid. [ Password should be at least 6 characters ]")) {
                                 Toast.makeText(getApplicationContext(), "Password should be at least 6 characters!", Toast.LENGTH_SHORT).show();
                                 password.setText("");
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

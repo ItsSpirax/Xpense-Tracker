@@ -13,19 +13,24 @@
     <string name="register">Register</string>
     <string name="log_out">Log Out</string>
     <string name="app_logo">App Logo</string>
-    <string name="add_expense">Add Expense</string>
+    <string name="add_expense">Add\nExpense</string>
     <string name="view_expenses">View Expenses</string>
     <string name="expenditure"><u>Expenditure</u></string>
     <string name="total">Total</string>
     <string name="monthly">Monthly</string>
     <string name="average">Average</string>
+    <string name="amount">Amount</string>
+    <string name="date">Date</string>
+    <string name="expenses">Expenses</string>
+    <string name="overview">Overview</string>
+    <string name="add_expenses">Add Expense</string>
     <string-array name="categories">
-        <item>Select</item>
-        <item>Bills</item>
-        <item>Clothes</item>
-        <item>Food</item>
-        <item>Groceries</item>
-        <item>Travel</item>
-        <item>Others</item>
+        <item>Category</item>
+        <item><b>Bills</b></item>
+        <item><b>Clothes</b></item>
+        <item><b>Food</b></item>
+        <item><b>Groceries</b></item>
+        <item><b>Travel</b></item>
+        <item><b>Others</b></item>
     </string-array>
 </resources>

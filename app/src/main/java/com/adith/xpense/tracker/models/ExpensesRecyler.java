@@ -1,10 +1,11 @@
 package com.adith.xpense.tracker.models;
 
 public class ExpensesRecyler {
-    public String name, amount, date;
+    public String id, name, amount, date;
     public int image;
 
-    public ExpensesRecyler(String name, String amount, String date, int image) {
+    public ExpensesRecyler(String id, String name, String amount, String date, int image) {
+        this.id = id;
         this.name = name;
         this.amount = amount;
         this.date = date;

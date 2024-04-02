@@ -22,6 +22,15 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -29,11 +38,6 @@ public class login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
-        }
-        mAuth = FirebaseAuth.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -62,10 +66,13 @@ public class login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Logged In!", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else if(task.getException().getMessage().contains("email address is badly formatted")) {
+                            email.setError("Invalid Email!");
                             email.setText("");
                             password.setText("");
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Invalid Credentials!", Toast.LENGTH_SHORT).show();
                         }
                     });
         }

@@ -145,37 +145,79 @@
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="#7427d5"
-        android:onClick="viewExpenses"
-        android:text="@string/view_expenses"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#7427d5"
-        android:onClick="addExpense"
-        android:text="@string/add_expense"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/topLeftButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_corner"
+            android:onClick="viewOverview"
+            android:text="@string/overview"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="#7427d5"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLeftButton"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/topRightButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#7427d5"
-        android:onClick="logout"
-        android:text="@string/log_out"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/topRightButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_corner"
+            android:onClick="viewExpenses"
+            android:text="@string/expenses"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="#7427d5"
+            app:layout_constraintBottom_toTopOf="@+id/bottomRightButton"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/topLeftButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bottomLeftButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_corner"
+            android:onClick="addExpense"
+            android:text="@string/add_expense"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="#7427d5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/bottomRightButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLeftButton" />
+
+        <Button
+            android:id="@+id/bottomRightButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_corner"
+            android:onClick="logout"
+            android:text="@string/log_out"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:backgroundTint="#7427d5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bottomLeftButton"
+            app:layout_constraintTop_toBottomOf="@+id/topRightButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>

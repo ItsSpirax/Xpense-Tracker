@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="Primary">#2d41ba</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Bills">#FFC94C</color>
+    <color name="Food">#B23C3C</color>
+    <color name="Clothes">#994799</color>
+    <color name="Travel">#3C88C2</color>
+    <color name="Groceries">#4DB266</color>
+    <color name="Others">#DFDFDF</color>
 </resources>

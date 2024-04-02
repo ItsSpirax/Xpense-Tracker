@@ -1,6 +1,7 @@
 package com.adith.xpense.tracker;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -53,19 +54,26 @@ public class addExpense extends AppCompatActivity {
     }
 
     public void saveExpense(View view) {
-        String category = (String) spinner.getSelectedItem();
+        String category = spinner.getSelectedItem().toString().replace("<b>", "").replace("</b>", "");
         String nm = name.getText().toString();
         String amt = amount.getText().toString();
 
-        if (nm.isEmpty() || amt.isEmpty() || date.getText().toString().isEmpty() || category.equals("Select")) {
+        if (nm.isEmpty() || amt.isEmpty() || date.getText().toString().isEmpty() || category.equals("Category")) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
         } else {
-            Expense expense = new Expense(nm, category, Integer.parseInt(amt), dt);
+            Expense expense = new Expense("NA", nm, category, Integer.parseInt(amt), dt);
 
             FireBase.addExpense(userId, expense, task -> {
                 if (task.isSuccessful()) {
                     Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show();
-                    finish();
+                    if (getIntent().getExtras().containsKey("fromExpense")) {
+                        Intent i = new Intent(getApplicationContext(), listExpense.class);
+                        i.putExtra("userId", userId);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        finish();
+                    }
                 } else {
                     Toast.makeText(this, "Failed to add expense", Toast.LENGTH_SHORT).show();
                 }
