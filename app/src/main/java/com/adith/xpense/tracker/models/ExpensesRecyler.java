@@ -1,9 +1,5 @@
 package com.adith.xpense.tracker.models;
 
-import android.media.Image;
-
-import java.util.ArrayList;
-
 public class ExpensesRecyler {
     public String name, amount, date;
     public int image;

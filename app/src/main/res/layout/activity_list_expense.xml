@@ -4,6 +4,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".expenseUpdate">
+    tools:context=".listExpense">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expenseList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        tools:listitem="@layout/expense_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

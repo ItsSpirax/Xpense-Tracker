@@ -42,9 +42,11 @@ public class signup extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+
         String t1 = email.getText().toString();
         String t2 = password.getText().toString();
         String t3 = name.getText().toString();
+
         if (t1.isEmpty() || t2.isEmpty() || t3.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Enter all fields!", Toast.LENGTH_SHORT).show();
         } else {

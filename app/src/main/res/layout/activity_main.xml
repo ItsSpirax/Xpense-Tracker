@@ -53,7 +53,7 @@
                 android:paddingTop="5dp"
                 android:text="@string/expenditure"
                 android:textSize="21sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -153,8 +153,8 @@
         android:backgroundTint="#7427d5"
         android:onClick="viewExpenses"
         android:text="@string/view_expenses"
-        android:textSize="18sp"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="200dp"
@@ -164,30 +164,8 @@
         android:backgroundTint="#7427d5"
         android:onClick="addExpense"
         android:text="@string/add_expense"
-        android:textSize="18sp"
-        android:textColor="#fff" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#7427d5"
-        android:onClick="updateExpense"
-        android:text="@string/update_expense"
-        android:textSize="18sp"
-        android:textColor="#fff" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#7427d5"
-        android:onClick="deleteExpense"
-        android:text="@string/delete_expense"
-        android:textSize="18sp"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -197,7 +175,7 @@
         android:backgroundTint="#7427d5"
         android:onClick="logout"
         android:text="@string/log_out"
-        android:textSize="18sp"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
 </LinearLayout>

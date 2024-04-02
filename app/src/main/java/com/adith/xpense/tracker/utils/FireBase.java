@@ -25,8 +25,7 @@ public class FireBase {
         mDatabase.child("users").child(userId).child("expenses").child(mDatabase.push().getKey()).setValue(expense).addOnCompleteListener(listener);
     }
 
-    public static void getExpensse(String userId, OnCompleteListener listener) {
-        // Get expenses from oldest to newest
+    public static void getExpenses(String userId, OnCompleteListener listener) {
         mDatabase.child("users").child(userId).child("expenses").get().addOnCompleteListener(listener);
     }
 

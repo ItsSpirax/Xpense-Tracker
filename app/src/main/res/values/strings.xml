@@ -13,8 +13,6 @@
     <string name="register">Register</string>
     <string name="log_out">Log Out</string>
     <string name="app_logo">App Logo</string>
-    <string name="delete_expense">Delete Expense</string>
-    <string name="update_expense">Update Expense</string>
     <string name="add_expense">Add Expense</string>
     <string name="view_expenses">View Expenses</string>
     <string name="expenditure"><u>Expenditure</u></string>

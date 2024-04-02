@@ -33,6 +33,8 @@ public class login extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         }
+        mAuth = FirebaseAuth.getInstance();
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String email = bundle.getString("email");
@@ -41,14 +43,15 @@ public class login extends AppCompatActivity {
                 emailField.setText(email);
             }
         }
-        mAuth = FirebaseAuth.getInstance();
     }
 
     public void Login(View view) {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+
         String t1 = email.getText().toString();
         String t2 = password.getText().toString();
+
         if (t1.isEmpty() || t2.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Enter both Email and Password!", Toast.LENGTH_SHORT).show();
         } else {
